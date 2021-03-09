@@ -1,0 +1,1 @@
+[{"id":1,"timestampp":"2021-03-09T02:26:08.246Z","products":[{"id":1,"timestampp":"2021-03-09T01:58:05.082Z","nombre":"Tomate","descripcion":"Un producto","codigo":"12321","foto":"url","precio":123213,"stock":3},{"id":1,"timestampp":"2021-03-09T01:58:05.082Z","nombre":"Tomate","descripcion":"Un producto","codigo":"12321","foto":"url","precio":123213,"stock":3}]}]
