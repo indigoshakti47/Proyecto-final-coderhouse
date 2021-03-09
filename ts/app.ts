@@ -14,7 +14,7 @@ app.use('/api/carrito', carritoRoutes)
 
 app.use(express.static(path.join(__dirname, './../public')))
 
-const port: number = parseInt(process.env.PORT!) || 8081
+const port: number = parseInt(process.env.PORT!) || 8080
 
 app.listen(port, () => {
   console.log(`El servidor está corriendo en el puerto ${port}`)
