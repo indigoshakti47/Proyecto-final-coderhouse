@@ -1,41 +1,35 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import { withRouter } from "react-router";
-import Sidebar from "../Components/Sidebar";
-import {insertProduct} from "../api/product";
+import React, { useState, useEffect } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import { updateProductApi, getProductsApi } from "../../api/product";
 
-const Dash = () => {
+function ModalComponent({show, setShow, product, setProducts}) {
 
   const [productData, setProductData] = useState({
-    nombre: "",
-    descripcion: "",
-    codigo: "",
-    foto: "",
-    precio: 0,
-    stock: 0
+    nombre: product.nombre,
+    descripcion: product.descripcion,
+    codigo: product.codigo,
+    foto: product.foto,
+    precio: product.precio,
+    stock: product.stock
   })
 
-  const submitForm = async () => {
-    console.log(productData)
-    const response = await insertProduct(productData);
+  const handleClose = () => setShow(false);
 
-    setProductData({nombre: "",
-    descripcion: "",
-    codigo: "",
-    foto: "",
-    precio: 0,
-    stock: 0})
-    console.log(response)
+  const submitForm = async () => {
+    await updateProductApi(product.id, productData)
+    const response = await getProductsApi()
+    setProducts(response)
+    setShow(false)
   }
+
   return (
     <>
-      <Container fluid>
-        <Row>
-          <Col xs={2} id="sidebar-wrapper">
-            <Sidebar />
-          </Col>
-          <Col xs={10} id="page-content-wrapper">
-            <Form>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modificar producto {productData.nombre}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <Form>
               <div className="form-group">
                 <label for="Name">Nombre</label>
                 <input
@@ -138,23 +132,17 @@ const Dash = () => {
                   }}
                 />
               </div>
-              <div className="form-group">
-              <Button
-                type="submit"
-                className="btn btn-primary"
-                href="#p"
-                onClick={() => submitForm()}
-              >
-                Ingresar producto
-              </Button>
-              </div>
               
             </Form>
-          </Col>
-        </Row>
-      </Container>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => submitForm()}>
+            Guardar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
-};
-const Dashboard = withRouter(Dash);
-export default Dashboard
+}
+
+export default ModalComponent;
