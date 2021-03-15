@@ -47,12 +47,16 @@ export default class Productos {
         product.stock = stock
       }
     })
+
+    productoRepository.actualizar(this.array)
+    
   }
 
   eliminarUno(id: number) {
 
     let deletedProduct = this.array.filter(product => product.id === id)
     this.array = this.array.filter(product => product.id !== id)
+    productoRepository.actualizar(this.array)
     return deletedProduct
   }
 

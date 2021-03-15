@@ -43,10 +43,12 @@ export default class Productos {
 
   eliminarUno(id: number) {
 
-    const carrito = this.array.findIndex(car => car.id === id )
+    const carrito = this.array[0].products.findIndex(car => car.id === id )
 
-    let deletedProduct = this.array[carrito]
-    this.array[carrito].products = this.array[carrito].products.filter(product => product.id !== id)
+    let deletedProduct = this.array[0].products[carrito]
+    this.array[0].products = this.array[0].products.filter(product => product.id !== id)
+    new CarritoRepository().actualizar(this.array)
+
     return deletedProduct
   }
 

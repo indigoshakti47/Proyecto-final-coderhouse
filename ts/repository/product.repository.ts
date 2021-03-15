@@ -73,6 +73,16 @@ export class ProductoRepository {
     }
   }
 
+  async actualizar(data: any[]) {
+
+    try{
+      fs.writeFileSync('./Productos.txt', JSON.stringify(data))
+      console.log(`Archivo Actualizado`)
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
   leer() {
     try {
       const data = fs.readFileSync('./Productos.txt', 'utf-8')

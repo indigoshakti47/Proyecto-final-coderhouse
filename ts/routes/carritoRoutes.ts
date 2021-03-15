@@ -8,7 +8,7 @@ import {CarritoRepository} from "../repository/carrito.repository"
 const router = express.Router()
 
 let carritos = new CarritoRepository().leer()
-let carrito = new Carrito(typeof(carritos) === 'string' ? JSON.parse(carritos): [])
+let carrito = new Carrito(typeof(carritos) === 'string' ? JSON.parse(carritos.toString()): [])
 
 interface carrito {
   nombre: string, 

@@ -42,6 +42,16 @@ export class CarritoRepository {
     }
   }
 
+  async actualizar(data: any[]) {
+
+    try{
+      fs.writeFileSync('./Carrito.txt', JSON.stringify(data))
+      console.log(`Archivo Actualizado`)
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
   leer() {
     try {
       const data = fs.readFileSync('./Carrito.txt', 'utf-8')
