@@ -20,7 +20,7 @@ const carrito_repository_1 = require("../repository/carrito.repository");
 const router = express_1.default.Router();
 exports.router = router;
 let carritos = new carrito_repository_1.CarritoRepository().leer();
-let carrito = new Carrito_1.default(typeof (carritos) === 'string' ? JSON.parse(carritos) : []);
+let carrito = new Carrito_1.default(typeof (carritos) === 'string' ? JSON.parse(carritos.toString()) : []);
 exports.carrito = carrito;
 router.get('/listar/:id?', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

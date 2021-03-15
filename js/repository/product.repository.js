@@ -64,6 +64,17 @@ class ProductoRepository {
             }
         });
     }
+    actualizar(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                fs_1.default.writeFileSync('./Productos.txt', JSON.stringify(data));
+                console.log(`Archivo Actualizado`);
+            }
+            catch (err) {
+                console.log(err);
+            }
+        });
+    }
     leer() {
         try {
             const data = fs_1.default.readFileSync('./Productos.txt', 'utf-8');
