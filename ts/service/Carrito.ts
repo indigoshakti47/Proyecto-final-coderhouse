@@ -4,7 +4,7 @@ import {CarritoRepository} from "../repository/carrito.repository"
 interface Carrito {
   id: number, 
   timestampp: Date, 
-  productos: Producto[]
+  products: Producto[]
 }
 
 export default class Productos {
@@ -21,14 +21,14 @@ export default class Productos {
     const timestampp: Date = new Date()
     if(!this.array.some(e => e.id === id)){
       const array = [producto]
-      const newProduct: Carrito = {id, timestampp, productos:array}
+      const newProduct: Carrito = {id, timestampp, products:array}
       this.array = [...this.array, newProduct]
-      new CarritoRepository().guardar(1, new Date(), newProduct.productos)
+      new CarritoRepository().guardar(1, new Date(), newProduct.products)
     }
     if(this.array.some(e => e.id === id)){
       const carrito = this.array.findIndex(car => car.id === id )
-      this.array[carrito].productos.push(producto)
-      new CarritoRepository().guardar(1, new Date(), this.array[carrito].productos)
+      this.array[carrito].products.push(producto)
+      new CarritoRepository().guardar(1, new Date(), this.array[carrito].products)
     }
 
 
@@ -46,7 +46,7 @@ export default class Productos {
     const carrito = this.array.findIndex(car => car.id === id )
 
     let deletedProduct = this.array[carrito]
-    this.array[carrito].productos = this.array[carrito].productos.filter(product => product.id !== id)
+    this.array[carrito].products = this.array[carrito].products.filter(product => product.id !== id)
     return deletedProduct
   }
 
